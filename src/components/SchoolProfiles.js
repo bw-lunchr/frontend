@@ -1,16 +1,18 @@
-import React from "react";
+import React from 'react';
+
+
 
 const SchoolProfile = () => {
   
   return(
     <div className='school-profile'>
       <div>
-        <h1>School Profile {/* school name */}</h1>
-        <h2>Location {/* school location */}</h2>
+        <h1>School Profile {props.name}</h1>
+        <h2>Location {props.location}</h2>
       </div>
       <div>
-        <h3>Current Funds: {/* amount */}</h3>
-        <h4>Amount Requested: {/* amount */}</h4>
+        <h3>Current Funds: {props.current_funds}</h3>
+        <h4>Amount Requested: {props.requested_funds}</h4>
       </div>
       <div>
         <button>add</button>
