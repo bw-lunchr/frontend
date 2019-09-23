@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 
 
@@ -83,9 +84,11 @@ const FormikUserForm = withFormik({
   }),
   //You can use this to see the values
   handleSubmit(values, { setStatus }) {
-    axios
-      .post("https://reqres.in/api/users/", values)
+    axiosWithAuth()
+      .post("https://bw-luncher.herokuapp.com/api/admin", values)
       .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        this.props.history.push('/protected');
         setStatus(res.data);
       })
       .catch(err => console.log(err.res));

@@ -8,7 +8,7 @@ const initialProfile = {
   password: ''
 }
 
-const ProfileForm = () => {
+const ProfileForm = ({updateProfiles, profiles}) => {
   const [editing, setEditing] = useState(false);
   const [ProfilToEdit, setProfileToEdit] = useState(initialProfile);
 
@@ -23,7 +23,7 @@ const ProfileForm = () => {
       .put(`https://bw-luncher.herokuapp.com/api/schools/${ProfilToEdit.id}`, ProfilToEdit)
       .then(res => {
         // console.log('Put: res', res.data);
-        updateColors(profiles.map(profile => {
+        updateProfiles(profiles.map(profile => {
           if (profile.id === res.data.id) {
             return res.data;
           } else {
@@ -48,7 +48,8 @@ const ProfileForm = () => {
   return (
     <div className='profile-wrap'>
       <form onSubmit={saveEdit}>
-        <legend>edit profile</legend>
+        <legend><h2>edit profile</h2></legend>
+        <br />
         <label>
           School:
           <input onChange={e => setProfileToEdit({...setProfileToEdit, school: e.target.value})
