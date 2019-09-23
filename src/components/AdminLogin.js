@@ -3,6 +3,9 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
+
+
+
 const UserForm = ({ values, errors, touched, status }) => {
   const [user, setUser] = useState([]);
   useEffect(() => {
@@ -26,7 +29,7 @@ const UserForm = ({ values, errors, touched, status }) => {
       </Form>
 
     {/* create profile */}
-    <h1>Create a Profile</h1>
+    <h1>Create a Profile </h1>
       <Form>
         <Field type="text" name="school" placeholder="School" />
         {touched.school && errors.school && (

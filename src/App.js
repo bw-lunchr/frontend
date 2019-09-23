@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import UserForm from './components/AdminLogin';
+import Navbar from './components/Navbar'
+
 function App() {
   return (
   <div className="App">
