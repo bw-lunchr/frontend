@@ -20,3 +20,20 @@
 .App-link {
   color: #09d3ac;
 }
+
+
+#nav {
+	width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none; }
+  
+
+#nav li a {
+		display: block;
+		padding: 8px 15px;
+		text-decoration: none;
+		font-weight: bold;
+		color: #069;
+		border-right: 1px solid #ccc; }
+
