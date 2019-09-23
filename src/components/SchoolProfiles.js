@@ -2,8 +2,8 @@ import React from 'react';
 
 
 
-const SchoolProfile = () => {
-  
+const SchoolProfile = (props) => {
+  console.log(props);
   return(
     <div className='school-profile'>
       <div>
