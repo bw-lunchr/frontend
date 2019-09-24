@@ -41,14 +41,14 @@
   text-align: left;
   width: 100%;
   margin: auto 100px;
-  padding: 10%;
+  padding: 5% 12% 5% 0%;
 }
 
 input,
 textarea {
   padding: 2%;
   font-size: 16px;
-  width: 70%;
+  width: 65%;
   display: block;
   color: #4d2d52;
   border: 2px solid rgba(77, 45, 82, 0.8);
