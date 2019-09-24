@@ -14,5 +14,5 @@ function SchoolGrid() {
   }
 
 
-
 export default SchoolGrid;
+
