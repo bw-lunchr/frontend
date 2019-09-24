@@ -19,6 +19,7 @@ class App extends React.Component {
     if(this.props.fetching){
       return <h2>Loading profile...</h2>
     }
+
   return (
     <Router>
       <Navbar />
