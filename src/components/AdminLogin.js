@@ -2,11 +2,13 @@ import React from "react";
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {Divider, Grid, Segment} from "semantic-ui-react";
 
+
 class UserForm extends React.Component {
   state = {
     credentials: {
       email: '',
       password: ''
+
     }
   };
 
