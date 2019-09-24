@@ -11,16 +11,13 @@ export const getSchool = () => dispatch => {
     // dispatch and axios request
     dispatch({type: FETCH_SCHOOL_START});
     axios
-      .get(``)
+      .get(`https://bw-luncher.herokuapp.com/api`)
       .then(res => {
         console.log('axios request: ', res.data)
         dispatch({type: FETCH_SCHOOL_SUCCESS, payload: res.data});
       })
       .catch(error => {
         console.log('catch error: ', error.res.message);
-        dispatch({
-          type: FETCH_SCHOOL_FAIL,
-          payload: error.res.message});
+        dispatch({type: FETCH_SCHOOL_FAIL, payload: error.res.message});
       });
-
 };
