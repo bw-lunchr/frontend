@@ -15,7 +15,7 @@ const App = () => {
       <div className="App">
       <h1>Build Week - Luncher App</h1>
         <PrivateRoute exact path='/AdminProfile' component={SchoolGrid} />
-        <PrivateRoute exact path='/edit' component={ProfileForm} />
+        <PrivateRoute exact path='/EditProfile' component={ProfileForm} />
         <Route exact path='/' component={UserForm} />
         <Route path='/DonorHomepage' component={DonorHomepage} />
         {/* <Route path='/AdminProfile' component={SchoolGrid} /> */}
