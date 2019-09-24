@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
+import React, {useState, useEffect} from "react";
+import {withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
-import { Button, Divider, Grid, Segment } from "semantic-ui-react";
+import {Button, Divider, Grid, Segment} from "semantic-ui-react";
 
-const UserForm = ({ values, errors, touched, status }) => {
+const UserForm = ({values, errors, touched, status}) => {
   const [user, setUser] = useState([]);
   useEffect(() => {
     if (status) {
