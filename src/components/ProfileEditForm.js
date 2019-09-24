@@ -37,7 +37,7 @@ const ProfileForm = ({updateProfiles, profiles}) => {
   const deleteProfile = profile => {
     // make a delete request to delete this profile
     axiosWithAuth()
-      .delete(`http://localhost:5000/api/profiles/${profile.id}`)
+      .delete(`https://bw-luncher.herokuapp.com/api/schools/${profile.id}`)
       .then(res => {
         // console.log('Delete: res', res);
         updateProfiles(profiles.filter(profile => profile.id !== res.data))

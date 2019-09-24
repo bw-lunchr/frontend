@@ -6,7 +6,7 @@ export const FETCH_SCHOOL_SUCCESS = 'FETCH_SCHOOL_SUCCESS';
 export const FETCH_SCHOOL_FAIL = 'FETCH_SCHOOL_FAIL';
 
 // action creators
-export const getSchool = () => dispatch => {
+export const getSchoolData = () => dispatch => {
  
     // dispatch and axios request
     dispatch({type: FETCH_SCHOOL_START});

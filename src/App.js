@@ -6,8 +6,19 @@ import UserForm from './components/AdminLogin';
 import Navbar from './components/Navbar';
 import './App.css';
 import ProfileForm from './components/ProfileEditForm';
+import DonorHomepage from './components/DonorHomepage';
+import {getSchoolData} from './store/actions';
+import {connect} from 'react-redux';
 
-function App() {
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getSchoolData();
+  }
+
+  render() {
+    if(this.props.fetching){
+      return <h2>Loading profile...</h2>
+    }
   return (
     <Router>
       <Navbar />
@@ -16,9 +27,20 @@ function App() {
         <PrivateRoute exact path='/protected' component={SchoolProfile} />
         <PrivateRoute exact path='/edit' component={ProfileForm} />
         <Route exact path='/' component={UserForm} />
+        <Route path='/DonorHomepage' component={DonorHomepage} />
       </div>
     </Router>
   );
 }
+}
 
-export default App;
+const mapStateToProps = state => {
+  console.log ('mSTP: ', state);
+  return {
+    school: state.school,
+    isFetching: state.isFetching,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps,{getSchoolData})(App);
