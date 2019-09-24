@@ -10,7 +10,7 @@ const initialProfile = {
 const ProfileForm = ({updateProfiles, profiles}) => {
   console.log(profiles);
   const [editing, setEditing] = useState(false);
-  const [profilToEdit, setProfileToEdit] = useState(initialProfile);
+  const [profileToEdit, setProfileToEdit] = useState(initialProfile);
 
   const editProfile = profile => {
     setEditing(true);
@@ -20,7 +20,7 @@ const ProfileForm = ({updateProfiles, profiles}) => {
   const saveEdit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/${profilToEdit.id}`, profilToEdit)
+      .put(`https://bw-luncher.herokuapp.com/api/admin/${profileToEdit.id}`, profileToEdit)
       .then(res => {
         // console.log('Put res', res.data);
         updateProfiles(profiles.map(profile => {
@@ -43,17 +43,17 @@ const ProfileForm = ({updateProfiles, profiles}) => {
         <label>
           Administrator Name: 
           <input onChange={e => setProfileToEdit({...setProfileToEdit, school: e.target.value})
-          } value={ProfilToEdit.name} />
+          } value={profileToEdit.name} />
         </label>
         <label>
           email: 
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
-          } value={ProfilToEdit.email} />
+          } value={profileToEdit.email} />
         </label>
         <label>
           password:
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
-          } value={ProfilToEdit.password} />
+          } value={profileToEdit.password} />
         </label>
         <div>
           <button type='submit'>save</button>
