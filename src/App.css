@@ -21,19 +21,35 @@
   color: #09d3ac;
 }
 
-
 #nav {
-	width: 100%;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  list-style: none; }
-  
+  list-style: none;
+}
 
 #nav li a {
-		display: block;
-		padding: 8px 15px;
-		text-decoration: none;
-		font-weight: bold;
-		color: #069;
-		border-right: 1px solid #ccc; }
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #069;
+  border-right: 1px solid #ccc;
+}
 
+.admin-form {
+  text-align: left;
+  width: 100%;
+  margin: auto 100px;
+  padding: 10%;
+}
+
+input,
+textarea {
+  padding: 2%;
+  font-size: 16px;
+  width: 70%;
+  display: block;
+  color: #4d2d52;
+  border: 2px solid rgba(77, 45, 82, 0.8);
+}
