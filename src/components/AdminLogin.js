@@ -1,118 +1,80 @@
-import React, {useState, useEffect} from "react";
-import {withFormik, Form, Field} from "formik";
-import * as Yup from "yup";
+import React from "react";
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import {Divider, Grid, Segment} from "semantic-ui-react";
 
-import {Button, Divider, Grid, Segment} from "semantic-ui-react";
-
-const UserForm = ({values, errors, touched, status}) => {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
+class UserForm extends React.Component {
+  state = {
+    credentials: {
+      email: '',
+      password: ''
     }
-  }, [status]);
+  };
 
-  return (
-    <div className="admin-form">
-      <Segment placeholder>
-        <Grid columns={2} relaxed="very" stackable>
-          <div class="right floated left aligned seven wide column">
-            <Grid.Column>
-              <div class="ui hidden divider"></div>
-              <div class="ui hidden divider"></div>
-              <Form>
-                <h1>Login</h1>
+  handleChange = (e) => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
 
-                <Field type="email" name="email" placeholder="Email" />
-      
-                {touched.email && errors.email && (
-                  <p className="error">{errors.email}</p>
-                )}
-                <div class="ui hidden divider"></div>
-                <Field type="password" name="password" placeholder="Password" />
-                {touched.password && errors.password && (
-                  <p className="error">{errors.password}</p>
-                )}
-                <div class="ui hidden divider"></div>
-                <button>Submit</button>
-              </Form>
-            </Grid.Column>
-          </div>
-
-          <div class="right floated left aligned seven wide column">
-            <Grid.Column>
-              <div class="ui hidden divider"></div>
-              <h1>Create a Profile </h1>
-
-              <Form>
-                <Field type="text" name="name" placeholder="Name" />
-                <div class="ui hidden divider"></div>
-                {touched.school && errors.school && (
-                  <p className="error">{errors.school}</p>
-                )}
-                <Field type="email" name="emailcreate" placeholder="Email" />
-                <div class="ui hidden divider"></div>
-                {touched.emailcreate && errors.emailcreate && (
-                  <p className="error">{errors.emailcreate}</p>
-                )}
-          
-                {touched.usernamecreate && errors.usernamecreate && (
-                  <p className="error">{errors.usernamecreate}</p>
-                )}
-                <Field
-                  type="password"
-                  name="passwordcreate"
-                  placeholder="Password"
-                />
-                {touched.passwordcreate && errors.passwordcreate && (
-                  <p className="error">{errors.passwordcreate}</p>
-                )}
-       <div class="ui hidden divider"></div>
-                <button>Submit</button>
-              </Form>
-            </Grid.Column>
-          </div>
-        </Grid>
-
-        <Divider vertical>Or</Divider>
-      </Segment>
-    </div>
-  );
-};
-const FormikUserForm = withFormik({
-  mapPropsToValues({
-    username,
-    password,
-    school,
-    email,
-    usernamecreate,
-    passwordcreate
-  }) {
-    return {
-      username: username || "",
-      password: password || "",
-      school: school || "",
-      email: email || "",
-      usernamecreate: usernamecreate || "",
-      passwordcreate: passwordcreate || ""
-    };
-  },
-  validationSchema: Yup.object().shape({
-
-    passwordcreate: Yup.string().min(5, "Password must be at least 5 characters")
-  }),
-  //You can use this to see the values
-  handleSubmit(values, { setStatus }) {
+  login = (e) => {
+    e.preventDefault();
     axiosWithAuth()
-      .post("https://bw-luncher.herokuapp.com/api/admin", values)
+    // post request
+      .post('/admin/login', this.state.credentials)
       .then(res => {
+        // localStorage
         localStorage.setItem('token', res.data.payload);
-        this.props.history.push('/protected');
-        setStatus(res.data);
+        // redirect
+        this.props.history.push('/AdminProfile');
       })
-      .catch(err => console.log(err.res));
+      .catch(error => console.log(error));
+  };
+
+  render() {
+    return (
+      <div className='admin-form'>
+        <Segment placeholder>
+          <Grid columns={2} relaxed="very" stackable>
+            <div class="right floated left aligned seven wide column">
+              <Grid.Column>
+                <div class="ui hidden divider"></div>
+                <div class="ui hidden divider"></div>
+                <form onSubmit={this.login}>
+                  <h1>Login</h1>
+                  <input type='email' name='email' value={this.state.credentials.email} onChange={this.handleChange} />
+                  <div class="ui hidden divider"></div>
+                  <input type='password' name='password' value={this.state.credentials.password} onChange={this.handleChange} />
+                  <div class="ui hidden divider"></div>
+                  <button>Login</button>
+                </form>
+              </Grid.Column>
+            </div>
+
+            <div class="right floated left aligned seven wide column">
+              <Grid.Column>
+              <div class="ui hidden divider"></div>
+                <h1>Create a Profile </h1>
+                <form>
+                 <input type="text" name="name" placeholder="Name" />
+                 <div class="ui hidden divider"></div>
+                 <input type="email" name="emailcreate" placeholder="Email" />
+                 <div class="ui hidden divider"></div>
+                 <input type="password" name="passwordcreate" placeholder="Password" />
+                <div class="ui hidden divider"></div>
+                <button>Submit</button>
+              </form>
+
+              </Grid.Column>
+            </div>
+          </Grid>
+          <Divider vertical>Or</Divider>
+        </Segment>
+      </div>
+    );
   }
-})(UserForm);
-console.log("This is the HOC", FormikUserForm);
-export default FormikUserForm;
+};
+
+export default UserForm;

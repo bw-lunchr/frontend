@@ -1,9 +1,6 @@
 import React from 'react';
 
-
-
 const SchoolProfile = (props) => {
-  console.log(props);
   return(
     <div className='school-profile'>
       <div>
@@ -11,7 +8,7 @@ const SchoolProfile = (props) => {
         <h2>Location {props.location}</h2>
       </div>
       <div>
-        <h3>Current Funds: {props.current_funds}</h3>
+        <h3>Current Funds: $200</h3>
         <h4>Amount Requested: {props.requested_funds}</h4>
       </div>
       <div>
