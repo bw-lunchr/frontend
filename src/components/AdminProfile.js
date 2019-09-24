@@ -6,18 +6,20 @@ import style from 'styled-components';
 const SchoolContainer = style.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
+    justify-content: space-evenly;
+    margin-top: 200px;
+    padding-right: 50px;
+    padding-left: 50px;
 `
 
 export default function SchoolGrid(){
 
-    const [data1, setData] = useState([]);
-    console.log("School data: ", data1);
+    const [data, setData] = useState([]);
+    console.log("School data: ", data);
     useEffect(() => {
 
         const getData = () => {
-            axios.get('https://bw-luncher.herokuapp.com/api/admin/2/schools')
+            axios.get('https://bw-luncher.herokuapp.com/api/admin/3/schools')
             .then(res => {
                 console.log("School info", res);
                 setData(res.data);
@@ -33,7 +35,7 @@ export default function SchoolGrid(){
         <div className = "DonorList">
 
             <SchoolContainer>
-            {data1.map(item => (
+            {data.map(item => (
                 <SchoolCard key = {item.id} Name = {item.name} Location = {item.location} Funds={item.requested_funds}/>
                 
             ))}
