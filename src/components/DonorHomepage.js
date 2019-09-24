@@ -1,6 +1,17 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import DonorCard from './DonorCard';
+import style from 'styled-components';
 
+const DonorContainer = style.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 200px;
+    padding-right: 50px;
+    padding-left: 50px;
+
+`
 
 export default function DonorHomepage(){
 
@@ -22,9 +33,15 @@ export default function DonorHomepage(){
     }, []);
 
     return (
-        <section className = "DonorList">
+        <div className = "DonorList">
 
-            Section here
-        </section>
+            <DonorContainer>
+            {data1.map(item => (
+                <DonorCard key = {item.id} Name = {item.name} Location = {item.location} Funds={item.requested_funds}/>
+                
+            ))}
+            </DonorContainer>
+            
+        </div>
     )
 }
