@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import './App.css';
 import ProfileForm from './components/ProfileEditForm';
 import DonorHomepage from './components/DonorHomepage';
+import SchoolGrid from './components/AdminProfile'
 import {getSchoolData} from './store/actions';
 import {connect} from 'react-redux';
 
@@ -29,6 +30,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/edit' component={ProfileForm} />
         <Route exact path='/' component={UserForm} />
         <Route path='/DonorHomepage' component={DonorHomepage} />
+        <Route path='/AdminProfile' component={SchoolGrid} />
       </div>
     </Router>
   );
