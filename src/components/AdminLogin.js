@@ -24,10 +24,10 @@ const UserForm = ({values, errors, touched, status}) => {
               <Form>
                 <h1>Login</h1>
 
-                <Field type="text" name="username" placeholder="Username" />
-
-                {touched.username && errors.username && (
-                  <p className="error">{errors.username}</p>
+                <Field type="email" name="email" placeholder="Email" />
+      
+                {touched.email && errors.email && (
+                  <p className="error">{errors.email}</p>
                 )}
                 <div class="ui hidden divider"></div>
                 <Field type="password" name="password" placeholder="Password" />
@@ -35,7 +35,7 @@ const UserForm = ({values, errors, touched, status}) => {
                   <p className="error">{errors.password}</p>
                 )}
                 <div class="ui hidden divider"></div>
-                <button>Submit!</button>
+                <button>Submit</button>
               </Form>
             </Grid.Column>
           </div>
@@ -46,22 +46,17 @@ const UserForm = ({values, errors, touched, status}) => {
               <h1>Create a Profile </h1>
 
               <Form>
-                <Field type="text" name="school" placeholder="School" />
+                <Field type="text" name="name" placeholder="Name" />
                 <div class="ui hidden divider"></div>
                 {touched.school && errors.school && (
                   <p className="error">{errors.school}</p>
                 )}
-                <Field type="text" name="email" placeholder="Email" />
+                <Field type="email" name="emailcreate" placeholder="Email" />
                 <div class="ui hidden divider"></div>
-                {touched.email && errors.email && (
-                  <p className="error">{errors.email}</p>
+                {touched.emailcreate && errors.emailcreate && (
+                  <p className="error">{errors.emailcreate}</p>
                 )}
-                <Field
-                  type="text"
-                  name="usernamecreate"
-                  placeholder="Username"
-                />
-                <div class="ui hidden divider"></div>
+          
                 {touched.usernamecreate && errors.usernamecreate && (
                   <p className="error">{errors.usernamecreate}</p>
                 )}
@@ -70,12 +65,11 @@ const UserForm = ({values, errors, touched, status}) => {
                   name="passwordcreate"
                   placeholder="Password"
                 />
-                <div class="ui hidden divider"></div>
                 {touched.passwordcreate && errors.passwordcreate && (
                   <p className="error">{errors.passwordcreate}</p>
                 )}
-
-                <button>Submit!</button>
+       <div class="ui hidden divider"></div>
+                <button>Submit</button>
               </Form>
             </Grid.Column>
           </div>
@@ -105,8 +99,8 @@ const FormikUserForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("Please enter your username"),
-    password: Yup.string().required()
+
+    passwordcreate: Yup.string().min(5, "Password must be at least 5 characters")
   }),
   //You can use this to see the values
   handleSubmit(values, { setStatus }) {
