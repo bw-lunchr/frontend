@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {NavLink} from 'react-router-dom';
+import { Button, Form, Divider } from 'semantic-ui-react'
+
 
 const initialProfile = {
   name: '',
@@ -38,7 +40,10 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
 
   return (
     <div className='profile-wrap'>
+      <Button>
       <NavLink to='AdminProfile'>View Profile</NavLink>
+      </Button>
+      <Form>
       <form onSubmit={saveEdit}>
         <legend><h2>Edit Profile</h2></legend>
         <br />
@@ -47,23 +52,30 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
           <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
           } value={props.name} />
         </label>
+         <div class="ui hidden divider"></div>
         <label>
           email: {props.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
           } value={props.email} />
         </label>
+         <div class="ui hidden divider"></div>
         <label>
           password: {props.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
           } value={props.password} />
         </label>
+         <div class="ui hidden divider"></div>
         <div>
-          <button type='submit'>save</button>
-          <button onClick={() => setEditing(false)}>cancel</button>
+        <br />
+          <Button type='submit'>save</Button>
+          <Button onClick={() => setEditing(false)}>cancel</Button>
+         <div class="ui hidden divider"></div>
         </div>
       </form>
       <br />
-      <button>Delete Profile</button>
+      <Button>Delete Profile</Button>
+      </Form>
+
     </div>
   );
 }

@@ -70,9 +70,9 @@ class UserForm extends React.Component {
                 <div class="ui hidden divider"></div>
                 <form onSubmit={this.login}>
                   <h1>Login</h1>
-                  <input type='email' name='email' value={this.state.credentials.email} onChange={this.handleChange} />
+                  <input type='email' name='email' placeholder="Email" value={this.state.credentials.email} onChange={this.handleChange} />
                   <div class="ui hidden divider"></div>
-                  <input type='password' name='password' value={this.state.credentials.password} onChange={this.handleChange} />
+                  <input type='password' name='password' placeholder="Password" value={this.state.credentials.password} onChange={this.handleChange} />
                   <div class="ui hidden divider"></div>
                   <button>Login</button>
                 </form>
