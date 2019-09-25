@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import { Button, Form, Divider } from 'semantic-ui-react'
+
 
 const initialProfile = {
   name: '',
@@ -37,29 +39,37 @@ const ProfileForm = ({updateProfiles, profiles}) => {
 
   return (
     <div className='profile-wrap'>
+      <Form>
       <form onSubmit={saveEdit}>
         <legend><h2>Edit Profile</h2></legend>
         <br />
+    
         <label>
           Administrator Name: {profileToEdit.name}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
           } value={profileToEdit.name} />
         </label>
+        <div class="ui hidden divider"></div>
         <label>
-          email: {profileToEdit.email}
+          Email: {profileToEdit.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
           } value={profileToEdit.email} />
         </label>
+        <div class="ui hidden divider"></div>
         <label>
-          password: {profileToEdit.password}
+          Password: {profileToEdit.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
           } value={profileToEdit.password} />
         </label>
+        <div class="ui hidden divider"></div>
         <div>
-          <button type='submit'>save</button>
-          <button onClick={() => setEditing(false)}>cancel</button>
+          
+          <Button type='submit'>Save</Button>
+          
+          <Button onClick={() => setEditing(false)}>Cancel</Button>
         </div>
       </form>
+      </Form>
     </div>
   );
 }

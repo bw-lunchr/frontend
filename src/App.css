@@ -56,8 +56,9 @@ textarea {
 
 .donor-form {
   width: 70%;
-  margin-left: 350px;
-  padding: 5%;
+  margin-left: 22%;
+  padding-top: 5%;
+  
 
 }
 
@@ -74,5 +75,23 @@ textarea {
 }
 .donor-form button {
   padding: 4%;
-  margin: 2px 150px 0px 0px;
+  margin: 33px 150px 0px 0px;
 }
+
+.Prof-Nav {
+  width: 6%;
+  padding: .60%;
+  margin-top: 2%;
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid black;
+}
+
+.profile-wrap  {
+  padding: 3%;
+  display: inline-block;
+  text-align: left;
+  width: 20%;
+  border: 2px solid rgba(77, 45, 82, 0.8);
+}
+
