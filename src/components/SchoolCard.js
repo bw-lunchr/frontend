@@ -35,7 +35,7 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`/schools/${amountToEdit.id}`, amountToEdit)
+      .put(`/schools/${props.id}`, amountToEdit)
       .then(res => {
         updateAmounts(amounts.map(amount => {
           if(amount.id === res.data.id) {
@@ -48,40 +48,39 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
       .catch(error => console.log(error));
   };
 
-  const deleteAmount = amount => {
-    axiosWithAuth()
-      .delete(`/schools/${amount.id}`)
-      .then(res => {
-        updateAmounts(amounts.filter(amount => amount.id !== res.data))
-      })
-      .catch(error => console.log(error));
-  };
+  // const deleteAmount = amount => {
+  //   axiosWithAuth()
+  //     .delete(`/schools/${amount.id}`)
+  //     .then(res => {
+  //       updateAmounts(amounts.filter(amount => amount.id !== res.data))
+  //     })
+  //     .catch(error => console.log(error));
+  // };
 
   return(
     <div>
-      <Wrapper>
+      <Wrapper key={props.amount} onClick={() => editAmount(props.amount)}>
         <h3>{props.Name}</h3>
         <Description>
           <p>{props.Location}</p>
           <p>Requested Amount: {props.Funds}</p>
         </Description>
-      </Wrapper>
 
       {editing && (
         <form onSubmit={saveEdit}>
-          <legend>Edit Request Amount</legend>
           <label>
             Amount:
             <input onChange={e => setAmountToEdit({ ...amountToEdit, amount: e.target.value })
-              } value={amountToEdit.amount} />
+              } value={props.amount} />
           </label>
           <div className="button-row">
-            <button onClick={() => editAmount()}>save</button>
+            <button>save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
-            <button onClick={() => deleteAmount()}>delete</button>
+            {/* <button onClick={() => deleteAmount(props.amount)}>delete</button> */}
           </div>
         </form>
       )}
+      </Wrapper>
     </div>
   );
 }
