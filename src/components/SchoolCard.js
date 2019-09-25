@@ -52,14 +52,14 @@ const SchoolCard = function({amount, updateAmounts, ...props})  {
       .catch(error => console.log(error));
   };
 
-  // const deleteAmount = amount => {
-  //   axiosWithAuth()
-  //     .delete(`/schools/${amount.id}`)
-  //     .then(res => {
-  //       updateAmounts(amounts.filter(amount => amount.id !== res.data))
-  //     })
-  //     .catch(error => console.log(error));
-  // };
+  const deleteAmount = amount => {
+    axiosWithAuth()
+      .delete(`/schools/${props.id}`)
+      .then(res => {
+        updateAmounts(amount.filter(amount => amount.id !== props.id))
+      })
+      .catch(error => console.log(error));
+  };
 
   return(
     <div>
@@ -80,7 +80,7 @@ const SchoolCard = function({amount, updateAmounts, ...props})  {
           <div className="button-row">
             <button>save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
-            {/* <button onClick={() => deleteAmount(props.amount)}>delete</button> */}
+            <button onClick={() => deleteAmount(props.funds)}>delete</button>
           </div>
         </form>
       )}
