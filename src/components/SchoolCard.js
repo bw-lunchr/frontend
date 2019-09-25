@@ -1,7 +1,7 @@
   
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import style from 'styled-components';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 const Wrapper = style.div`
 display: flex;
@@ -76,9 +76,9 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
               } value={amountToEdit.amount} />
           </label>
           <div className="button-row">
-            <button onClick={() => editAmount(amount)}>save</button>
+            <button onClick={() => editAmount()}>save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
-            <button onClick={() => deleteAmount(amount)}>delete</button>
+            <button onClick={() => deleteAmount()}>delete</button>
           </div>
         </form>
       )}

@@ -42,7 +42,7 @@ const ProfileForm = ({updateProfiles, profiles}) => {
         <br />
         <label>
           Administrator Name: 
-          <input onChange={e => setProfileToEdit({...setProfileToEdit, school: e.target.value})
+          <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
           } value={profileToEdit.name} />
         </label>
         <label>
