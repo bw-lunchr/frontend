@@ -17,10 +17,10 @@ const ProfileForm = ({updateProfiles, profiles}) => {
     setProfileToEdit(profile);
   };
 
-  const saveEdit = e => {
+  const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/${profileToEdit.id}`, profileToEdit)
+      .put(`https://bw-luncher.herokuapp.com/api/admin/3`, profileToEdit)
       .then(res => {
         // console.log('Put res', res.data);
         updateProfiles(profiles.map(profile => {
@@ -41,17 +41,17 @@ const ProfileForm = ({updateProfiles, profiles}) => {
         <legend><h2>Edit Profile</h2></legend>
         <br />
         <label>
-          Administrator Name: 
+          Administrator Name: {profileToEdit.name}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
           } value={profileToEdit.name} />
         </label>
         <label>
-          email: 
+          email: {profileToEdit.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
           } value={profileToEdit.email} />
         </label>
         <label>
-          password:
+          password: {profileToEdit.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
           } value={profileToEdit.password} />
         </label>
