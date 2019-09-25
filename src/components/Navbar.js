@@ -7,8 +7,8 @@ class Navbar extends React.Component{
     return (
       <div>
         <ul id="nav">
-          <li><a href="https://luncher-adam.netlify.com/index.html">Home</a></li>
-          <li><NavLink to='EditProfile'>Edit Profile</NavLink></li>
+          <li><a href="https://luncher-adam.netlify.com/index.html">Home1</a></li>
+          <li><a href="https://lunchr-kevin.netlify.com/index.html">Home2</a></li>
           <li><NavLink to='DonorHomepage'>View Schools</NavLink></li>
         </ul>
       </div>
