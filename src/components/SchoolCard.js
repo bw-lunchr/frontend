@@ -76,15 +76,13 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
               } value={amountToEdit.amount} />
           </label>
           <div className="button-row">
-            <button type="submit">save</button>
+            <button onClick={() => editAmount(amount)}>save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
             <button onClick={() => deleteAmount(amount)}>delete</button>
           </div>
         </form>
       )}
     </div>
-
-
   );
 }
 
