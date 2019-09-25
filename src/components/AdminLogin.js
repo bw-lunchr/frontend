@@ -8,7 +8,11 @@ class UserForm extends React.Component {
     credentials: {
       email: '',
       password: ''
-
+    },
+    newCredentials: {
+      name: '',
+      email: '',
+      password: ''
     }
   };
 
@@ -16,6 +20,15 @@ class UserForm extends React.Component {
     this.setState({
       credentials: {
         ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  handleChangeNew = (e) => {
+    this.setState({
+      newCredentials: {
+        ...this.state.newCredentials,
         [e.target.name]: e.target.value
       }
     });
@@ -30,6 +43,17 @@ class UserForm extends React.Component {
         // localStorage
         localStorage.setItem('token', res.data.payload);
         // redirect
+        this.props.history.push('/AdminProfile');
+      })
+      .catch(error => console.log(error));
+  };
+
+  newLogin = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post('/admin/register', this.state.newCredentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
         this.props.history.push('/AdminProfile');
       })
       .catch(error => console.log(error));
@@ -59,7 +83,7 @@ class UserForm extends React.Component {
               <Grid.Column>
               <div class="ui hidden divider"></div>
                 <h1>Create a Profile </h1>
-                <form>
+                <form onSubmit={this.newLogin}>
                  <input type="text" name="name" placeholder="Name" />
                  <div class="ui hidden divider"></div>
                  <input type="email" name="emailcreate" placeholder="Email" />
