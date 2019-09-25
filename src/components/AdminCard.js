@@ -21,7 +21,7 @@ const SchoolContainer = style.div`
 
         const getData = () => {
           axiosWithAuth()
-            .get('https://bw-luncher.herokuapp.com/api/admin/1/schools')
+            .get('/admin/1/schools')
             .then(res => {
                 console.log("School info", res);
                 setData(res.data);

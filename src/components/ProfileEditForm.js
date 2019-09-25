@@ -3,6 +3,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {NavLink} from 'react-router-dom';
 import { Button, Form, Divider } from 'semantic-ui-react'
 
+
 const initialProfile = {
   name: '',
   email: '',
@@ -71,10 +72,10 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
          <div class="ui hidden divider"></div>
         </div>
       </form>
-
       <br />
       <Button>Delete Profile</Button>
       </Form>
+
     </div>
   );
 }
