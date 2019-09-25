@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import SchoolCard from './SchoolCard';
 import style from 'styled-components';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const SchoolContainer = style.div`
     display: flex;
@@ -19,7 +20,8 @@ const SchoolContainer = style.div`
     useEffect(() => {
 
         const getData = () => {
-            axios.get('https://bw-luncher.herokuapp.com/api/admin/3/schools')
+          axiosWithAuth()
+            .get('https://bw-luncher.herokuapp.com/api/admin/1/schools')
             .then(res => {
                 console.log("School info", res);
                 setData(res.data);

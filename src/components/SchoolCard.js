@@ -64,7 +64,7 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
         <Description>
           <p>{props.Location}</p>
           <p>Requested Amount: {props.Funds}</p>
-          </Description>
+        </Description>
       </Wrapper>
 
       {editing && (

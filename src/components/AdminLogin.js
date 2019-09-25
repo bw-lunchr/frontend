@@ -41,7 +41,7 @@ class UserForm extends React.Component {
       .post('/admin/login', this.state.credentials)
       .then(res => {
         // localStorage
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', res.data.token);
         // redirect
         this.props.history.push('/AdminProfile');
       })
@@ -53,7 +53,7 @@ class UserForm extends React.Component {
     axiosWithAuth()
       .post('/admin/register', this.state.newCredentials)
       .then(res => {
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', res.data.token);
         this.props.history.push('/AdminProfile');
       })
       .catch(error => console.log(error));
