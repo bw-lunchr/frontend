@@ -44,7 +44,7 @@
   padding: 5% 12% 5% 0%;
 }
 
-input,
+.admin-form input,
 textarea {
   padding: 2%;
   font-size: 16px;
@@ -53,3 +53,46 @@ textarea {
   color: #4d2d52;
   border: 2px solid rgba(77, 45, 82, 0.8);
 }
+
+.donor-form {
+  width: 70%;
+  margin-left: 22%;
+  padding-top: 5%;
+  
+
+}
+
+
+.donor-form input,
+textarea {
+  padding: 4%;
+  text-align: center;
+  font-size: 16px;
+  width: 95%;
+  display: block;
+  color: #4d2d52;
+  border: 2px solid rgba(77, 45, 82, 0.8);
+}
+.donor-form button {
+  padding: 4%;
+  margin: 33px 150px 0px 0px;
+}
+
+.Prof-Nav {
+  width: 6%;
+  padding: .60%;
+  margin-top: 2%;
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid black;
+}
+
+.profile-wrap  {
+  padding: 3%;
+  display: inline-block;
+  text-align: left;
+  width: 20%;
+  border: 2px solid rgba(77, 45, 82, 0.8);
+}
+
+
