@@ -45,6 +45,8 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
       </Button>
       <Form>
       <form onSubmit={saveEdit}>
+       <div class="ui hidden divider"></div>
+       <div class="ui hidden divider"></div>
         <legend><h2>Edit Profile</h2></legend>
         <br />
         <label>
@@ -54,21 +56,21 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
         </label>
          <div class="ui hidden divider"></div>
         <label>
-          email: {props.email}
+          Email: {props.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
           } value={props.email} />
         </label>
          <div class="ui hidden divider"></div>
         <label>
-          password: {props.password}
+          Password: {props.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
           } value={props.password} />
         </label>
          <div class="ui hidden divider"></div>
         <div>
         <br />
-          <Button type='submit'>save</Button>
-          <Button onClick={() => setEditing(false)}>cancel</Button>
+          <Button type='submit'>Save</Button>
+          <Button onClick={() => setEditing(false)}>Cancel</Button>
          <div class="ui hidden divider"></div>
         </div>
       </form>

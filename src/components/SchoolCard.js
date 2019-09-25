@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import style from 'styled-components';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
-
+import { Button } from 'semantic-ui-react'
 const Wrapper = style.div`
 display: flex;
   flex-direction: column;
@@ -78,8 +78,8 @@ const SchoolCard = function({amount, updateAmounts, ...props})  {
               } value={amountToEdit.amount} />
           </label>
           <div className="button-row">
-            <button>save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <Button>save</Button>
+            <Button onClick={() => setEditing(false)}>cancel</Button>
             {/* <button onClick={() => deleteAmount(props.amount)}>delete</button> */}
           </div>
         </form>

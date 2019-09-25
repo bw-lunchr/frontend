@@ -2,16 +2,21 @@ import React from "react";
 import FormikDonorForm from './DonorForm';
 import AdminCard from './AdminCard';
 import {NavLink} from 'react-router-dom';
-
+import { Button, Divider} from 'semantic-ui-react'
 
 function SchoolGrid() {
     return (
       <div className="AdminProf">
-        <div className="Prof-Nav">
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+          <Button>
         <NavLink to='EditProfile'>Edit Profile</NavLink>
-        </div>
+        </Button>
+   
         <FormikDonorForm />
+        <div className="AdminProfcard">
         <AdminCard />
+        </div>
       </div>
     );
   }
