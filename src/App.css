@@ -44,7 +44,7 @@
   padding: 5% 12% 5% 0%;
 }
 
-input,
+.admin-form input,
 textarea {
   padding: 2%;
   font-size: 16px;
@@ -52,4 +52,27 @@ textarea {
   display: block;
   color: #4d2d52;
   border: 2px solid rgba(77, 45, 82, 0.8);
+}
+
+.donor-form {
+  width: 70%;
+  margin-left: 350px;
+  padding: 5%;
+
+}
+
+
+.donor-form input,
+textarea {
+  padding: 4%;
+  text-align: center;
+  font-size: 16px;
+  width: 95%;
+  display: block;
+  color: #4d2d52;
+  border: 2px solid rgba(77, 45, 82, 0.8);
+}
+.donor-form button {
+  padding: 4%;
+  margin: 2px 150px 0px 0px;
 }
