@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {Divider, Grid, Segment} from "semantic-ui-react";
+import { Grid , Button} from "semantic-ui-react";
 
 
 
@@ -50,7 +50,9 @@ const DonorForm = ({values, errors, touched, status}) => {
                 />{touched.Amount && errors.Amount&& (<p className="errors">{errors.Amount}</p>)}
                  </Grid.Column>
                 <Grid.Column>
-                <button>Submit</button>
+                <div className='donor-btn'>
+                <Button>Submit</Button>
+                </div>
                 </Grid.Column>
              
                 </Grid>

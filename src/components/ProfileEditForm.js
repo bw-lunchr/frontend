@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {NavLink} from 'react-router-dom';
-import { Button, Form, Divider } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 
 const initialProfile = {
