@@ -23,23 +23,27 @@ const Description = style.p`
 
 const initialAmount = {amount: ''};
 
-const SchoolCard = function({amounts, updateAmounts, ...props})  {
+const SchoolCard = function({amount, updateAmounts, ...props})  {
   const [editing, setEditing] = useState(false);
   const [amountToEdit, setAmountToEdit] = useState(initialAmount);
 
   const editAmount = amount => {
-    setEditing(true);
-    setAmountToEdit(amount);
+    if (!editing) {
+      setEditing(true);
+      setAmountToEdit({amount});
+    }
   };
 
   const saveEdit = (e) => {
     e.preventDefault();
+    console.log(props.id, amountToEdit);
     axiosWithAuth()
-      .put(`/schools/${props.id}`, amountToEdit)
+      .put(`/schools/${props.id}`, {requested_funds: amountToEdit.amount})
       .then(res => {
-        updateAmounts(amounts.map(amount => {
-          if(amount.id === res.data.id) {
-            return res.data;
+        console.log('Put: res', res.data.id, res.data);
+        updateAmounts(amount.map(amount => {
+          if(amount.id === props.id) {
+            return {...amount, requested_funds: amountToEdit.amount};
           } else {
             return amount;
           }
@@ -59,11 +63,11 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
 
   return(
     <div>
-      <Wrapper key={props.amount} onClick={() => editAmount(props.amount)}>
+      <Wrapper key={props.amount} onClick={() => editAmount(props.funds)}>
         <h3>{props.Name}</h3>
         <Description>
           <p>{props.Location}</p>
-          <p>Requested Amount: {props.Funds}</p>
+          <p>Requested Amount: {props.funds}</p>
         </Description>
 
       {editing && (
@@ -71,7 +75,7 @@ const SchoolCard = function({amounts, updateAmounts, ...props})  {
           <label>
             Amount:
             <input onChange={e => setAmountToEdit({ ...amountToEdit, amount: e.target.value })
-              } value={props.amount} />
+              } value={amountToEdit.amount} />
           </label>
           <div className="button-row">
             <button>save</button>

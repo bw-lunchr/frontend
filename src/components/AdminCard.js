@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import axios from 'axios';
 import SchoolCard from './SchoolCard';
 import style from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { tsPropertySignature } from '@babel/types';
 
 const SchoolContainer = style.div`
     display: flex;
@@ -14,7 +14,7 @@ const SchoolContainer = style.div`
 `
 
  function AdminCard(){
-
+    const [amount, setAmount] = useState([]);
     const [data, setData] = useState([]);
     console.log("School data: ", data);
     useEffect(() => {
@@ -38,7 +38,7 @@ const SchoolContainer = style.div`
 
             <SchoolContainer>
             {data.map(item => (
-                <SchoolCard key = {item.id} Name = {item.name} Location = {item.location} Funds={item.requested_funds}/>
+                <SchoolCard key = {item.id} Name = {item.name} Location = {item.location} funds={item.requested_funds} amount={data} updateAmounts={setData} id={item.id} />
                 
             ))}
             </SchoolContainer>
