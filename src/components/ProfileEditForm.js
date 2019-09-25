@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import {NavLink} from 'react-router-dom';
 import { Button, Form, Divider } from 'semantic-ui-react'
-
 
 const initialProfile = {
   name: '',
@@ -9,7 +9,7 @@ const initialProfile = {
   password: ''
 }
 
-const ProfileForm = ({updateProfiles, profiles}) => {
+const ProfileForm = ({updateProfiles, profiles, ...props}) => {
   console.log(profiles);
   const [editing, setEditing] = useState(false);
   const [profileToEdit, setProfileToEdit] = useState(initialProfile);
@@ -22,7 +22,7 @@ const ProfileForm = ({updateProfiles, profiles}) => {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/3`, profileToEdit)
+      .put(`https://bw-luncher.herokuapp.com/api/admin/${props.id}`, profileToEdit)
       .then(res => {
         // console.log('Put res', res.data);
         updateProfiles(profiles.map(profile => {
@@ -39,36 +39,41 @@ const ProfileForm = ({updateProfiles, profiles}) => {
 
   return (
     <div className='profile-wrap'>
+      <Button>
+      <NavLink to='AdminProfile'>View Profile</NavLink>
+      </Button>
       <Form>
       <form onSubmit={saveEdit}>
         <legend><h2>Edit Profile</h2></legend>
         <br />
-    
         <label>
-          Administrator Name: {profileToEdit.name}
+          Administrator Name: {props.name}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
-          } value={profileToEdit.name} />
+          } value={props.name} />
         </label>
-        <div class="ui hidden divider"></div>
+         <div class="ui hidden divider"></div>
         <label>
-          Email: {profileToEdit.email}
+          email: {props.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
-          } value={profileToEdit.email} />
+          } value={props.email} />
         </label>
-        <div class="ui hidden divider"></div>
+         <div class="ui hidden divider"></div>
         <label>
-          Password: {profileToEdit.password}
+          password: {props.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
-          } value={profileToEdit.password} />
+          } value={props.password} />
         </label>
-        <div class="ui hidden divider"></div>
+         <div class="ui hidden divider"></div>
         <div>
-          
-          <Button type='submit'>Save</Button>
-          
-          <Button onClick={() => setEditing(false)}>Cancel</Button>
+        <br />
+          <Button type='submit'>save</Button>
+          <Button onClick={() => setEditing(false)}>cancel</Button>
+         <div class="ui hidden divider"></div>
         </div>
       </form>
+
+      <br />
+      <Button>Delete Profile</Button>
       </Form>
     </div>
   );
