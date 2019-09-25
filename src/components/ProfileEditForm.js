@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import {NavLink} from 'react-router-dom';
 
 const initialProfile = {
   name: '',
@@ -7,7 +8,7 @@ const initialProfile = {
   password: ''
 }
 
-const ProfileForm = ({updateProfiles, profiles}) => {
+const ProfileForm = ({updateProfiles, profiles, ...props}) => {
   console.log(profiles);
   const [editing, setEditing] = useState(false);
   const [profileToEdit, setProfileToEdit] = useState(initialProfile);
@@ -20,7 +21,7 @@ const ProfileForm = ({updateProfiles, profiles}) => {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/3`, profileToEdit)
+      .put(`https://bw-luncher.herokuapp.com/api/admin/${props.id}`, profileToEdit)
       .then(res => {
         // console.log('Put res', res.data);
         updateProfiles(profiles.map(profile => {
@@ -37,29 +38,32 @@ const ProfileForm = ({updateProfiles, profiles}) => {
 
   return (
     <div className='profile-wrap'>
+      <NavLink to='AdminProfile'>View Profile</NavLink>
       <form onSubmit={saveEdit}>
         <legend><h2>Edit Profile</h2></legend>
         <br />
         <label>
-          Administrator Name: {profileToEdit.name}
+          Administrator Name: {props.name}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
-          } value={profileToEdit.name} />
+          } value={props.name} />
         </label>
         <label>
-          email: {profileToEdit.email}
+          email: {props.email}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
-          } value={profileToEdit.email} />
+          } value={props.email} />
         </label>
         <label>
-          password: {profileToEdit.password}
+          password: {props.password}
           <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
-          } value={profileToEdit.password} />
+          } value={props.password} />
         </label>
         <div>
           <button type='submit'>save</button>
           <button onClick={() => setEditing(false)}>cancel</button>
         </div>
       </form>
+      <br />
+      <button>Delete Profile</button>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import axios from 'axios';
 const DonorForm = ({values, errors, touched, status}) => {
     const [input, setInput] = useState([]);
     console.log("Schools input", input);
-
+    
     useEffect(() => {
         if(status){
             setInput([...input, status])
