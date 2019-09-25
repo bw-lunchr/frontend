@@ -22,7 +22,6 @@ const App = () => {
         <PrivateRoute exact path='/AdminCard' component={AdminCard} />
         <Route exact path='/' component={UserForm} />
         <Route path='/DonorHomepage' component={DonorHomepage} />
-        {/* <Route path='/AdminProfile' component={SchoolGrid} /> */}
       </div>
     </Router>
   );

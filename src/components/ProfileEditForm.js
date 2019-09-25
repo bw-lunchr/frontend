@@ -23,7 +23,7 @@ const ProfileForm = ({updateProfiles, profiles, ...props}) => {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/${props.id}`, profileToEdit)
+      .put(`https://bw-luncher.herokuapp.com/api/admin/1`, profileToEdit)
       .then(res => {
         // console.log('Put res', res.data);
         updateProfiles(profiles.map(profile => {
