@@ -10,7 +10,7 @@ class UserForm extends React.Component {
       password: ''
     },
     newCredentials: {
-      name: '',
+      fullName: '',
       email: '',
       password: ''
     }
@@ -29,7 +29,7 @@ class UserForm extends React.Component {
     this.setState({
       newCredentials: {
         ...this.state.newCredentials,
-        [e.target.name]: e.target.value
+        [e.target.fullName]: e.target.value
       }
     });
   };
@@ -86,11 +86,11 @@ class UserForm extends React.Component {
               <div class="ui hidden divider"></div>
                 <h1>Create a Profile </h1>
                 <form onSubmit={this.newLogin}>
-                 <input type="text" name="name" placeholder="Name" />
+                 <input type="text" name="fullName" placeholder="Name" value={this.state.newCredentials.fullName} onChange={this.handleChangeNew} />
                  <div class="ui hidden divider"></div>
-                 <input type="email" name="emailcreate" placeholder="Email" />
+                 <input type="email" name="email" placeholder="Email" value={this.state.newCredentials.email} onChange={this.handleChangeNew} />
                  <div class="ui hidden divider"></div>
-                 <input type="password" name="passwordcreate" placeholder="Password" />
+                 <input type="password" name="password" placeholder="Password" value={this.state.newCredentials.password} onChange={this.handleChangeNew} />
                 <div class="ui hidden divider"></div>
                 <div class="adm-btn">
                 <Button>Submit</Button>
