@@ -1,5 +1,6 @@
 import React from "react";
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import axios from 'axios';
 import {Divider, Grid, Segment, Button} from "semantic-ui-react";
 
 
@@ -10,9 +11,12 @@ class UserForm extends React.Component {
       password: ''
     },
     newCredentials: {
-      fullName: '',
       email: '',
       password: ''
+    },
+    newObject: {
+      email: 'blue@gmail.com',
+      password: 'apple2'
     }
   };
 
@@ -20,7 +24,7 @@ class UserForm extends React.Component {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value
+        [e.target.fullName]: e.target.value
       }
     });
   };
@@ -48,13 +52,12 @@ class UserForm extends React.Component {
       .catch(error => console.log(error));
   };
 
-  newLogin = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post('/admin/register', this.state.newCredentials)
-      .then(res => {
-        localStorage.setItem('token', res.data.token);
-        this.props.history.push('/AdminProfile');
+  newLogin = () => {
+    axios
+      .post('https://bw-luncher.herokuapp.com/api/admin/register', this.state.newObject)
+      .then(res => { 
+        console.log('Server res:',res.data);
+        //setStatus(res.data);
       })
       .catch(error => console.log(error));
   };
@@ -70,9 +73,11 @@ class UserForm extends React.Component {
                 <div class="ui hidden divider"></div>
                 <form onSubmit={this.login}>
                   <h1>Login</h1>
-                  <input type='email' name='email' placeholder="Email" value={this.state.credentials.email} onChange={this.handleChange} />
+                  <input type='email' name='email' placeholder="Email" 
+                    value={this.state.credentials.email} onChange={this.handleChange} />
                   <div class="ui hidden divider"></div>
-                  <input type='password' name='password' placeholder="Password" value={this.state.credentials.password} onChange={this.handleChange} />
+                  <input type='password' name='password' placeholder="Password" 
+                    value={this.state.credentials.password} onChange={this.handleChange} />
                   <div class="ui hidden divider"></div>
                   <div class="adm-btn">
                   <Button>Login</Button>
@@ -86,16 +91,20 @@ class UserForm extends React.Component {
               <div class="ui hidden divider"></div>
                 <h1>Create a Profile </h1>
                 <form onSubmit={this.newLogin}>
-                 <input type="text" name="fullName" placeholder="Name" value={this.state.newCredentials.fullName} onChange={this.handleChangeNew} />
-                 <div class="ui hidden divider"></div>
-                 <input type="email" name="email" placeholder="Email" value={this.state.newCredentials.email} onChange={this.handleChangeNew} />
-                 <div class="ui hidden divider"></div>
-                 <input type="password" name="password" placeholder="Password" value={this.state.newCredentials.password} onChange={this.handleChangeNew} />
-                <div class="ui hidden divider"></div>
-                <div class="adm-btn">
-                <Button>Submit</Button>
-                </div>
-              </form>
+                  {/* <input type="text" name="fullName" placeholder="Name" 
+                    value={this.state.newCredentials.fullName} onChange={this.handleChangeNew} />
+                  <div class="ui hidden divider"></div> */}
+                  <input type="email" name="email" placeholder="Email" 
+                    value={this.state.newCredentials.email} onChange={this.handleChangeNew} />
+                  <div class="ui hidden divider"></div>
+                  {console.log('Checking newCredentials:', this.state.newCredentials)}
+                  <input type="password" name="password" placeholder="Password" 
+                    value={this.state.newCredentials.password} onChange={this.handleChangeNew} />
+                  <div class="ui hidden divider"></div>
+                  <div class="adm-btn">
+                    <Button>Submit</Button>
+                  </div>
+                </form>
 
               </Grid.Column>
             </div>
