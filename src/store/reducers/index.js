@@ -14,9 +14,9 @@ const initialState = {
   admin: [
     {
       id: 3,
-      fullName: 'Batman',
-      email: 'test3@gmail.com',
-      password: 'password3',
+      fullName: '',
+      email: '',
+      password: '',
     },
   ],
   isFetching: false,

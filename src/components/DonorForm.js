@@ -7,7 +7,7 @@ import {Grid , Button} from "semantic-ui-react";
 const DonorForm = ({errors, touched, status, addSchool}) => {
   const [input, setInput] = useState([]);
   // console.log("Schools input", input);
-  const [school, setSchool] = useState({Name: "", Location: "", Amount: ""});
+  const [school, setSchool] = useState({name: "", location: "", requested_funds: ""});
     
   useEffect(() => {
     if(status){
@@ -35,36 +35,36 @@ const DonorForm = ({errors, touched, status, addSchool}) => {
           <p>School Name</p>
             <Field
               type="text"
-              name = "Name"  
-              placeholder = "Name" 
-              value={school.Name} 
+              name = "name"  
+              placeholder = "name" 
+              value={school.name} 
               onChange={handleChange} 
             />
-            {touched.Name && errors.Name && (<p className="errors">{errors.Name}</p>)}
+            {touched.name && errors.name && (<p className="errors">{errors.name}</p>)}
         </Grid.Column>
     
         <Grid.Column>
           <p>School Location</p>
             <Field
               type= "text"
-              name = "Location" 
-              placeholder = "Location"  
-              value={school.Location} 
+              name = "location" 
+              placeholder = "location"  
+              value={school.location} 
               onChange={handleChange} 
             />
-          {touched.Location && errors.Location && (<p className="errors">{errors.Location}</p>)}
+          {touched.location && errors.location && (<p className="errors">{errors.location}</p>)}
         </Grid.Column>
             
         <Grid.Column>
           <p>Amount Needed</p>
             <Field
-              type = "Text"
-              name = "Amount"
-              placeholder = "Amount" 
-              value={school.Amount} 
+              type = "text"
+              name = "requested_funds"
+              placeholder = "amount" 
+              value={school.requested_funds} 
               onChange={handleChange} 
             />
-            {touched.Amount && errors.Amount&& (<p className="errors">{errors.Amount}</p>)}
+            {touched.requested_funds && errors.requested_funds && (<p className="errors">{errors.requested_funds}</p>)}
         </Grid.Column>
 
         <Grid.Column>
@@ -75,9 +75,9 @@ const DonorForm = ({errors, touched, status, addSchool}) => {
         </Grid>     
         {input.map(item => (
           <ul className="DHgird" key = {item.id}>
-            <li>Name: {item.Name}</li>
-            <li>Location: {item.Location}</li>
-            <li>Amount: {item.Amount}</li>
+            <li>Name: {item.name}</li>
+            <li>Location: {item.location}</li>
+            <li>Amount: {item.requested_funds}</li>
           </ul>
         ))}
       </Form>
@@ -86,18 +86,18 @@ const DonorForm = ({errors, touched, status, addSchool}) => {
 }
 
 const FormikDonorForm = withFormik({
-  mapPropsToValues({Name, Location, Amount}){
+  mapPropsToValues({name, location, requested_funds}){
     return{
-      Name: Name || "",
-      Location: Location || "", 
-      Amount: Amount || "" 
+      name: name || "",
+      location: location || "", 
+      requested_funds: requested_funds || "" 
     }
   },
 
   validationSchema: Yup.object().shape({
-    Name: Yup.string().required("You must put a school name"),
-    Location: Yup.string().required("You must put a location"),
-    Amount : Yup.string().required("You must input an amount")
+    name: Yup.string().required("You must put a school name"),
+    location: Yup.string().required("You must put a location"),
+    requested_funds : Yup.string().required("You must input an amount")
   }),
 
   handleSubmit(values, {setStatus}){

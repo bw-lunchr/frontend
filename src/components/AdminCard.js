@@ -14,13 +14,13 @@ const SchoolContainer = style.div`
 
 function AdminCard(){
   const [data, setData] = useState([]);
-  console.log("School data: ", data);
+  //console.log("School data: ", data);
   useEffect(() => {
     const getData = () => {
       axiosWithAuth()
         .get('/admin/3/schools')
         .then(res => {
-          console.log("School info:", res);
+          //console.log("School info:", res);
           setData(res.data);
         })
         .catch(err => {

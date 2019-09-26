@@ -33,8 +33,8 @@ function SchoolGrid(props) {
   }
     return (
       <div className="AdminProf">
-            <div class="ui hidden divider"></div>
-            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
           <Button>
         <NavLink to='EditProfile'>Edit Profile</NavLink>
         </Button>

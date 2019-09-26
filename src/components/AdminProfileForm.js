@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getAdminData} from '../store/actions';
 import ProfileForm from './ProfileEditForm';
 
 const AdminEditForm = ({getAdminData, admin, isFetching}) => {
-//   console.log('admin:', admin);
-//   const [data, setData] = useState([]);
-//   console.log(`data`, data, setData);
   useEffect(() => {
     getAdminData();
   }, [getAdminData]);
@@ -18,7 +15,6 @@ const AdminEditForm = ({getAdminData, admin, isFetching}) => {
   return (
     <div>
       <ProfileForm key={admin.id}  profile={admin} id={admin.id} />
-      {/* updateProfiles={setData} */}
     </div>
   );
 };

@@ -2,22 +2,14 @@ import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {NavLink} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react'
-import AdminProfileForm from './AdminProfileForm';
-
-
-const initialProfile = {
-  fullName: 'Batman',
-  email: 'test3@gmail.com',
-  password: 'password3',
-}
 
 const ProfileForm = ({updateProfiles, profile, id}) => {
   //console.log('UpdateForm:', profile);
   const [editing, setEditing] = useState(false);
   const [profileToEdit, setProfileToEdit] = useState({ 
     fullName: profile.fullName,
-  email: profile.email,
-  password: profile.password});
+    email: profile.email,
+    password: profile.password});
   //console.log(profileToEdit);
 
   const editProfile = profile => {
@@ -34,20 +26,13 @@ const ProfileForm = ({updateProfiles, profile, id}) => {
       .put(`/admin/${profile.id}`, profileToEdit)
       .then(res => {
         console.log('Put res', res.data);
-        // updateProfiles(profile.map(profile => {
-        //   if (profile.id === id) {
-        //     return {...profile, profileToEdit};
-        //   } else {
-        //     return profile;
-        //   }
-        // }));
       })
       .catch(error => console.log(error));
   };
 
   const deleteProfile = profile => {
     axiosWithAuth()
-      .delete(`/schools/${id}`)
+      .delete(`/admin/${profile.id}`)
       .then(res => {
         updateProfiles(profile.filter(profile => profile.id !== id))
       })
