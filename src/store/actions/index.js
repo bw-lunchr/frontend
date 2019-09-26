@@ -27,11 +27,11 @@ export const ADD_SCHOOL_SUCCESS = 'ADD_SCHOOL_SUCCESS';
 export const ADD_SCHOOL_FAIL = 'ADD_SCHOOL_FAIL';
 
 // action creators: school
-export const addSchool = (name, id) => dispatch => {
-  console.log('addSchool:', {admin: name}, id);
+export const addSchool = (name) => dispatch => {
+  console.log('addSchool:', {name});
   dispatch({type: ADD_SCHOOL_START});
   axiosWithAuth()
-    .post(`/admin/${id}/school`, name)
+    .post(`/admin/3/school`, name)
     .then(res => {
       if(res.status === 201) {
         dispatch({type: ADD_SCHOOL_SUCCESS, payload: name.name})

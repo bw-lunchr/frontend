@@ -7,7 +7,7 @@ import {Grid , Button} from "semantic-ui-react";
 const DonorForm = ({errors, touched, status, addSchool}) => {
   const [input, setInput] = useState([]);
   // console.log("Schools input", input);
-  const [school, setSchool] = useState({Name: "", Location: "", Amount: ""});
+  const [school, setSchool] = useState({name: "", location: "", requested_funds: ""});
     
   useEffect(() => {
     if(status){
