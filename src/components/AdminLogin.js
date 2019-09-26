@@ -9,6 +9,7 @@ class UserForm extends React.Component {
      password: ''
    },
    newCredentials: {
+     fullName: '',
      email: '',
      password: ''
    }
@@ -46,6 +47,7 @@ class UserForm extends React.Component {
      .post('https://bw-luncher.herokuapp.com/api/admin/register', this.state.newCredentials)
      .then(res => { 
        console.log('Server res:',res.data);
+       this.props.history.push('/AdminProfile');
      })
      .catch(error => console.log(error));
    console.log('Payload to server:',this.state.newCredentials);
@@ -78,9 +80,9 @@ class UserForm extends React.Component {
              <div class="ui hidden divider"></div>
                <h1>Create a Profile </h1>
                <form onSubmit={this.newLogin}>
-                 {/* <input type="text" name="fullName" placeholder="Name" 
+                 <input type="text" name="fullName" placeholder="Name" 
                    value={this.state.newCredentials.fullName} onChange={this.handleChangeNew} />
-                 <div class="ui hidden divider"></div> */}
+                 <div class="ui hidden divider"></div>
                  <input type="email" name="email" placeholder="Email" 
                    value={this.state.newCredentials.email} onChange={this.handleChangeNew} />
                  <div class="ui hidden divider"></div>
