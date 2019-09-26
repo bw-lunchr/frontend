@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import style from 'styled-components';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
-import { Button } from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
+
 const Wrapper = style.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   width: 250px;
@@ -22,7 +23,7 @@ const Description = style.p`
 
 const initialAmount = {amount: ''};
 
-const SchoolCard = function({amount, updateAmounts, ...props})  {
+const SchoolCard = ({amount, updateAmounts, ...props}) => {
   const [editing, setEditing] = useState(false);
   const [amountToEdit, setAmountToEdit] = useState(initialAmount);
 
@@ -39,7 +40,7 @@ const SchoolCard = function({amount, updateAmounts, ...props})  {
     axiosWithAuth()
       .put(`/schools/${props.id}`, {requested_funds: amountToEdit.amount})
       .then(res => {
-        console.log('Put: res', res.data.id, res.data);
+        console.log('Put: res', res.data);
         updateAmounts(amount.map(amount => {
           if(amount.id === props.id) {
             return {...amount, requested_funds: amountToEdit.amount};
@@ -80,7 +81,7 @@ const SchoolCard = function({amount, updateAmounts, ...props})  {
             <Button>save</Button>
             <Button onClick={() => setEditing(false)}>cancel</Button>
             <Button onClick={() => deleteAmount(props.funds)}>delete</Button>
-                      </div>
+          </div>
         </form>
       )}
       </Wrapper>

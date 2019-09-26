@@ -4,6 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import UserForm from './components/AdminLogin';
 import Navbar from './components/Navbar';
 import './App.css';
+import AdminEditForm from './components/AdminProfileForm';
 import ProfileForm from './components/ProfileEditForm';
 import DonorHomepage from './components/DonorHomepage';
 import SchoolGrid from './components/AdminProfile';
@@ -17,7 +18,8 @@ const App = () => {
       <div className="App">
       <h1>Build Week - Luncher App</h1>
         <PrivateRoute exact path='/AdminProfile' component={SchoolGrid} />
-        <PrivateRoute exact path='/EditProfile' component={ProfileForm} />
+        <PrivateRoute exact path='/EditProfile' component={AdminEditForm} />
+        <PrivateRoute exact path='/ProfileForm' component={ProfileForm} />
         <PrivateRoute exact path='/SchoolCard' component={SchoolCard} />
         <PrivateRoute exact path='/AdminCard' component={AdminCard} />
         <Route exact path='/' component={UserForm} />

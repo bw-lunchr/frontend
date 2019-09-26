@@ -18,7 +18,7 @@ function AdminCard(){
   useEffect(() => {
     const getData = () => {
       axiosWithAuth()
-        .get('/admin/1/schools')
+        .get('/admin/3/schools')
         .then(res => {
           console.log("School info:", res);
           setData(res.data);
