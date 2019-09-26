@@ -87,3 +87,8 @@ textarea {
   width: 35%;
   border: 2px solid rgba(77, 45, 82, 0.8);
 }
+
+
+.adm-btn {
+  display: inline-block;
+}

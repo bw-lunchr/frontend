@@ -1,6 +1,6 @@
 import React from "react";
 import {axiosWithAuth} from '../utils/axiosWithAuth';
-import {Divider, Grid, Segment} from "semantic-ui-react";
+import {Divider, Grid, Segment, Button} from "semantic-ui-react";
 
 
 class UserForm extends React.Component {
@@ -74,7 +74,9 @@ class UserForm extends React.Component {
                   <div class="ui hidden divider"></div>
                   <input type='password' name='password' placeholder="Password" value={this.state.credentials.password} onChange={this.handleChange} />
                   <div class="ui hidden divider"></div>
-                  <button>Login</button>
+                  <div class="adm-btn">
+                  <Button>Login</Button>
+                  </div>
                 </form>
               </Grid.Column>
             </div>
@@ -90,7 +92,9 @@ class UserForm extends React.Component {
                  <div class="ui hidden divider"></div>
                  <input type="password" name="passwordcreate" placeholder="Password" />
                 <div class="ui hidden divider"></div>
-                <button>Submit</button>
+                <div class="adm-btn">
+                <Button>Submit</Button>
+                </div>
               </form>
 
               </Grid.Column>
