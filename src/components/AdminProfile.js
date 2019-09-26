@@ -4,6 +4,7 @@ import AdminCard from './AdminCard';
 import {NavLink} from 'react-router-dom';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
+import { Button} from 'semantic-ui-react'
 
 function SchoolGrid(props) {
   console.log('school props', props);
@@ -32,11 +33,16 @@ function SchoolGrid(props) {
   }
     return (
       <div className="AdminProf">
-        <div className="Prof-Nav">
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+          <Button>
         <NavLink to='EditProfile'>Edit Profile</NavLink>
-        </div>
+        </Button>
+   
         <FormikDonorForm addSchool={addSchool} />
+        <div className="AdminProfcard">
         <AdminCard />
+        </div>
       </div>
     );
   }

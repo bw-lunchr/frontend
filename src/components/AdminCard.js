@@ -7,7 +7,7 @@ const SchoolContainer = style.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 200px;
+  margin: 5% 0%;
   padding-right: 50px;
   padding-left: 50px;
 `
