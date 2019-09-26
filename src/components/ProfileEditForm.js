@@ -56,7 +56,7 @@ const ProfileForm = ({updateProfiles, profile, id}) => {
         </label>
          <div class="ui hidden divider"></div>
         <label>
-          Email: {profileToEdit.email}
+          Email:
           <input onChange={e => setProfileToEdit({...profileToEdit, email: e.target.value})
           } value={profileToEdit.email} />
         </label>
