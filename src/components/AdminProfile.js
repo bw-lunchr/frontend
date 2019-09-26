@@ -4,7 +4,7 @@ import AdminCard from './AdminCard';
 import {NavLink} from 'react-router-dom';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
-import { Button} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react';
 
 function SchoolGrid(props) {
   console.log('school props', props);
@@ -12,7 +12,7 @@ function SchoolGrid(props) {
 
   const getSchools = () => {
     axiosWithAuth()
-      .get(`/admin/1/schools`)
+      .get(`/admin/3/schools`)
       .then(res => {
         setSchools(res.data);
       })
@@ -25,7 +25,7 @@ function SchoolGrid(props) {
 
   const addSchool = school => {
     axiosWithAuth()
-      .post(`/admin/1/schools`, school)
+      .post(`/admin/3/schools`, school)
       .then(res => {
         setSchools(res.data);
       })
