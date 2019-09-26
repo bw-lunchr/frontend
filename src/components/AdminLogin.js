@@ -29,7 +29,7 @@ class UserForm extends React.Component {
     this.setState({
       newCredentials: {
         ...this.state.newCredentials,
-        [e.target.fullName]: e.target.value
+        [e.target.name]: e.target.value
       }
     });
   };
