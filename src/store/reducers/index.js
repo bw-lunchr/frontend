@@ -1,5 +1,7 @@
-import {FETCH_SCHOOL_START, FETCH_SCHOOL_SUCCESS} from '../actions';
+import {FETCH_ADMIN_START, FETCH_ADMIN_SUCCESS} from '../actions';
+import {ADD_SCHOOL_START, ADD_SCHOOL_SUCCESS} from '../actions';
 
+// Admin
 const initialState = {
   school: [
     {
@@ -7,7 +9,14 @@ const initialState = {
       name: '',
       location: '',
       requested_funds: '',
-      admin_id: ''
+    },
+  ],
+  admin: [
+    {
+      id: 3,
+      fullName: 'Batman',
+      email: 'test3@gmail.com',
+      password: 'password3',
     },
   ],
   isFetching: false,
@@ -16,18 +25,31 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case FETCH_SCHOOL_START:
+    case FETCH_ADMIN_START:
       return {
         ...state,
         isFetching: true,
         error: ''
       };
-    case FETCH_SCHOOL_SUCCESS:
+    case FETCH_ADMIN_SUCCESS:
       return {
         ...state,
-        breweries: action.payload,
+        admin: action.payload,
         isFetching: false,
-      }; 
+      };
+    case ADD_SCHOOL_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ''
+      }
+    case ADD_SCHOOL_SUCCESS:
+      return {
+        ...state,
+        school: [...state.school, action.payload],
+        isFetching: false,
+        error: ''
+      }
     default:
       return state;
   }

@@ -1,23 +1,45 @@
-import axios from 'axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 
-// action types
-export const FETCH_SCHOOL_START = 'FETCH_SCHOOL_START';
-export const FETCH_SCHOOL_SUCCESS = 'FETCH_SCHOOL_SUCCESS';
-export const FETCH_SCHOOL_FAIL = 'FETCH_SCHOOL_FAIL';
+// action types: admin
+export const FETCH_ADMIN_START = 'FETCH_ADMIN_START';
+export const FETCH_ADMIN_SUCCESS = 'FETCH_ADMIN_SUCCESS';
+export const FETCH_ADMIN_FAIL = 'FETCH_ADMIN_FAIL';
 
-// action creators
-export const getSchoolData = () => dispatch => {
- 
-    // dispatch and axios request
-    dispatch({type: FETCH_SCHOOL_START});
-    axios
-      .get(`https://bw-luncher.herokuapp.com/api`)
-      .then(res => {
-        console.log('axios request: ', res.data)
-        dispatch({type: FETCH_SCHOOL_SUCCESS, payload: res.data});
-      })
-      .catch(error => {
-        console.log('catch error: ', error.res.message);
-        dispatch({type: FETCH_SCHOOL_FAIL, payload: error.res.message});
-      });
+// action creators: admin
+export const getAdminData = () => dispatch => {
+  
+  dispatch({type: FETCH_ADMIN_START});
+  axiosWithAuth()
+    .get(`/admin/3`)
+    .then(res => {
+      console.log('actions admin:', res.data)
+      dispatch({type: FETCH_ADMIN_SUCCESS, payload: res.data});
+    })
+    .catch(error => {
+      dispatch({type: FETCH_ADMIN_FAIL, payload: `${error}`});
+      console.log(error);
+    });
+};
+
+// action types: school
+export const ADD_SCHOOL_START = 'ADD_SCHOOL_START';
+export const ADD_SCHOOL_SUCCESS = 'ADD_SCHOOL_SUCCESS';
+export const ADD_SCHOOL_FAIL = 'ADD_SCHOOL_FAIL';
+
+// action creators: school
+export const addSchool = (name, id) => dispatch => {
+  console.log('addSchool:', {admin: name}, id);
+  dispatch({type: ADD_SCHOOL_START});
+  axiosWithAuth()
+    .post(`/admin/${id}/school`, name)
+    .then(res => {
+      if(res.status === 201) {
+        dispatch({type: ADD_SCHOOL_SUCCESS, payload: name.name})
+      }
+    })
+    .catch(error => {
+      if(error) {
+        dispatch({type: ADD_SCHOOL_FAIL, payload: 'This school does not exist'})
+      }
+    });
 };

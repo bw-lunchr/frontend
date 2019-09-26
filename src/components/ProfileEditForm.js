@@ -1,83 +1,96 @@
 import React, {useState} from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 import {NavLink} from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react'
+import AdminProfileForm from './AdminProfileForm';
 
 
 const initialProfile = {
-  name: '',
-  email: '',
-  password: ''
+  fullName: 'Batman',
+  email: 'test3@gmail.com',
+  password: 'password3',
 }
 
-const ProfileForm = ({updateProfiles, profiles, ...props}) => {
-  console.log(profiles);
+const ProfileForm = ({updateProfiles, profile, id}) => {
+  //console.log('UpdateForm:', profile);
   const [editing, setEditing] = useState(false);
-  const [profileToEdit, setProfileToEdit] = useState(initialProfile);
+  const [profileToEdit, setProfileToEdit] = useState({ 
+    fullName: profile.fullName,
+  email: profile.email,
+  password: profile.password});
+  //console.log(profileToEdit);
 
   const editProfile = profile => {
-    setEditing(true);
-    setProfileToEdit(profile);
+    if (!editing) {
+      setEditing(true);
+      //setProfileToEdit({profile});
+    }
   };
 
   const saveEdit = (e) => {
     e.preventDefault();
+    console.log(profileToEdit);
     axiosWithAuth()
-      .put(`https://bw-luncher.herokuapp.com/api/admin/1`, profileToEdit)
+      .put(`/admin/${profile.id}`, profileToEdit)
       .then(res => {
-        // console.log('Put res', res.data);
-        updateProfiles(profiles.map(profile => {
-          if (profile.id === res.data.id) {
-            return res.data;
-          } else {
-            return profile;
-          }
-        }));
+        console.log('Put res', res.data);
+        // updateProfiles(profile.map(profile => {
+        //   if (profile.id === id) {
+        //     return {...profile, profileToEdit};
+        //   } else {
+        //     return profile;
+        //   }
+        // }));
       })
       .catch(error => console.log(error));
   };
 
+  const deleteProfile = profile => {
+    axiosWithAuth()
+      .delete(`/schools/${id}`)
+      .then(res => {
+        updateProfiles(profile.filter(profile => profile.id !== id))
+      })
+      .catch(error => console.log(error));
+  };
 
   return (
     <div className='profile-wrap'>
       <Button>
-      <NavLink to='AdminProfile'>View Profile</NavLink>
+        <NavLink to='AdminProfile'>View Profile</NavLink>
       </Button>
-      <Form>
-      <form onSubmit={saveEdit}>
-       <div class="ui hidden divider"></div>
-       <div class="ui hidden divider"></div>
+      <Form onSubmit={saveEdit}>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <legend><h2>Edit Profile</h2></legend>
         <br />
         <label>
-          Administrator Name: {props.name}
-          <input onChange={e => setProfileToEdit({...setProfileToEdit, name: e.target.value})
-          } value={props.name} />
+          Administrator Name: 
+          <input onChange={e => setProfileToEdit({...profileToEdit, fullName: e.target.value})
+          } value={profileToEdit.fullName} />
         </label>
          <div class="ui hidden divider"></div>
         <label>
-          Email: {props.email}
-          <input onChange={e => setProfileToEdit({...setProfileToEdit, email: e.target.value})
-          } value={props.email} />
+          Email: {profileToEdit.email}
+          <input onChange={e => setProfileToEdit({...profileToEdit, email: e.target.value})
+          } value={profileToEdit.email} />
         </label>
          <div class="ui hidden divider"></div>
         <label>
-          Password: {props.password}
-          <input onChange={e => setProfileToEdit({...setProfileToEdit, password: e.target.value})
-          } value={props.password} />
+          Password: 
+          <input onChange={e => setProfileToEdit({...profileToEdit, password: e.target.value})
+          } value={profileToEdit.password} />
         </label>
          <div class="ui hidden divider"></div>
         <div>
         <br />
-          <Button type='submit'>Save</Button>
+          <Button onClick={() => editProfile(profile)}>Save</Button>
           <Button onClick={() => setEditing(false)}>Cancel</Button>
-         <div class="ui hidden divider"></div>
+          <div class="ui hidden divider"></div>
         </div>
-      </form>
-      <br />
-      <Button>Delete Profile</Button>
+        <br />
+        <Button onClick={() => deleteProfile(profile)}>Delete Profile</Button>
       </Form>
-
     </div>
   );
 }
